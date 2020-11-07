@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>シミュレーションサイエンス</title>
+  <link href="c3.css" rel="stylesheet">
+  <script src="d3.min.js"></script>
+  <script src="c3.min.js"></script>
+</head>
+
+<body onLoad="myfunc()">
+ <table border="1" width="1000">
+
+    <tr>
+      <th width="50">乱数の数</th>
+      <th width="50;">10個</th>
+      <th width="50">10^3個</th>
+      <th width="50">10^5個</th>
+      <th width="50">10^7個</th>
+    </tr>
+
+    <tr>
+      <td>1回目</td>
+      <td id="10_1"></td>
+      <td id="13_1"></td>
+      <td id="15_1"></td>
+      <td id="17_1"></td>
+    </tr>
+
+    <tr>
+      <td>2回目</td>
+      <td id="10_2"></td>
+      <td id="13_2"></td>
+      <td id="15_2"></td>
+      <td id="17_2"></td>
+    </tr>
+
+    <tr>
+      <td>3回目</td>
+      <td id="10_3"></td>
+      <td id="13_3"></td>
+      <td id="15_3"></td>
+      <td id="17_3"></td>
+    </tr><tr>
+
+    <td>4回目</td>
+      <td id="10_4"></td>
+      <td id="13_4"></td>
+      <td id="15_4"></td>
+      <td id="17_4"></td>
+    </tr><tr>
+
+    <td>5回目</td>
+      <td id="10_5"></td>
+      <td id="13_5"></td>
+      <td id="15_5"></td>
+      <td id="17_5"></td>
+    </tr><tr>
+
+    <td>6回目</td>
+      <td id="10_6"></td>
+      <td id="13_6"></td>
+      <td id="15_6"></td>
+      <td id="17_6"></td>
+    </tr><tr>
+
+    <td>7回目</td>
+      <td id="10_7"></td>
+      <td id="13_7"></td>
+      <td id="15_7"></td>
+      <td id="17_7"></td>
+    </tr><tr>
+
+    <td>8回目</td>
+      <td id="10_8"></td>
+      <td id="13_8"></td>
+      <td id="15_8"></td>
+      <td id="17_8"></td>
+    </tr><tr>
+
+    <td>9回目</td>
+      <td id="10_9"></td>
+      <td id="13_9"></td>
+      <td id="15_9"></td>
+      <td id="17_9"></td>
+    </tr><tr>
+
+    <td>10回目</td>
+      <td id="10_0"></td>
+      <td id="13_0"></td>
+      <td id="15_0"></td>
+      <td id="17_0"></td>
+    </tr><tr>
+
+    <td>πの推定値</td>
+      <td id="10_i"></td>
+      <td id="13_i"></td>
+      <td id="15_i"></td>
+      <td id="17_i"></td>
+    </tr><tr>
+
+    <td>πの推定値の標準偏差</td>
+      <td id="10_a"></td>
+      <td id="13_a"></td>
+      <td id="15_a"></td>
+      <td id="17_a"></td>
+    </tr>
+  </table>
+
+  <div id="my-chart"></div>
+
+</body>
+</html>
+
+<script>
+function monte(N){
+  var point=0
+  for (let i = 0; i < N; i++) {
+      var x = Math.random()
+      var y = Math.random()
+      if (x*x+y*y < 1.0){
+          point += 1}
+  var pi = 4.0 * point /N
+  }
+return pi
+}
+
+var count=0
+var monte_method_1=0
+var monte_method_2=0
+var monte_method_3=0
+var monte_method_4=0
+var monte_method_5=0
+var monte_method_6=0
+var monte_method_7=0
+var monte_method_8=0
+var monte_method_9=0
+var monte_method_10=0
+
+var monte_method3_1=0
+var monte_method3_2=0
+var monte_method3_3=0
+var monte_method3_4=0
+var monte_method3_5=0
+var monte_method3_6=0
+var monte_method3_7=0
+var monte_method3_8=0
+var monte_method3_9=0
+var monte_method3_10=0
+
+var monte_method5_1=0
+var monte_method5_2=0
+var monte_method5_3=0
+var monte_method5_4=0
+var monte_method5_5=0
+var monte_method5_6=0
+var monte_method5_7=0
+var monte_method5_8=0
+var monte_method5_9=0
+var monte_method5_10=0
+
+var monte_method7_1=0
+var monte_method7_2=0
+var monte_method7_3=0
+var monte_method7_4=0
+var monte_method7_5=0
+var monte_method7_6=0
+var monte_method7_7=0
+var monte_method7_8=0
+var monte_method7_9=0
+var monte_method7_10=0
+
+var In_1=0
+var In_3=0
+var In_5=0
+var In_7=0
+var σn_1=0
+var σn_3=0
+var σn_5=0
+var σn_7=0
+var sum=0
+var sum2=0
+var b=0
+
+function In(){
+    sum=(monte_method_1+monte_method_2+monte_method_3+monte_method_4+monte_method_5
++monte_method_6+monte_method_7+monte_method_8+monte_method_9+monte_method_10)/10
+    return sum
+  }
+
+function σn(){
+      sum2=Math.sqrt(((((monte_method_1-In())**2)+((monte_method_2-In())**2)+((monte_method_3-In())**2)
++((monte_method_4-In())**2)+((monte_method_5-In())**2)+((monte_method_6-In())**2)
++((monte_method_7-In())**2)+((monte_method_8-In())**2)+((monte_method_9-In())**2)
++((monte_method_10-In())**2))/9))
+      return sum2
+    }
+
+
+N=10**3
+var count=0
+for (let i = 0; i < 10; i++){
+  b=monte(N)
+  count+=1
+  if (count==1){
+    monte_method_1=b
+  }else if (count==2){
+    monte_method_2=b
+  }else if (count==3){
+    monte_method_3=b
+  }else if (count==4){
+    monte_method_4=b
+  }else if (count==5){
+    monte_method_5=b
+  }else if (count==6){
+    monte_method_6=b
+  }else if (count==7){
+    monte_method_7=b
+  }else if (count==8){
+    monte_method_8=b
+  }else if (count==9){
+    monte_method_9=b
+  }else if (count==10){
+    monte_method_10=b
+  }
+}
+
+monte_method3_1=monte_method_1
+monte_method3_2=monte_method_2
+monte_method3_3=monte_method_3
+monte_method3_4=monte_method_4
+monte_method3_5=monte_method_5
+monte_method3_6=monte_method_6
+monte_method3_7=monte_method_7
+monte_method3_8=monte_method_8
+monte_method3_9=monte_method_9
+monte_method3_10=monte_method_10
+
+In_3=In()
+σn_3=σn()
+
+N=10**5
+var count=0
+for (let i = 0; i < 10; i++){
+  b=monte(N)
+  count+=1
+  if (count==1){
+    monte_method_1=b
+  }else if (count==2){
+    monte_method_2=b
+  }else if (count==3){
+    monte_method_3=b
+  }else if (count==4){
+    monte_method_4=b
+  }else if (count==5){
+    monte_method_5=b
+  }else if (count==6){
+    monte_method_6=b
+  }else if (count==7){
+    monte_method_7=b
+  }else if (count==8){
+    monte_method_8=b
+  }else if (count==9){
+    monte_method_9=b
+  }else if (count==10){
+    monte_method_10=b
+  }
+}
+
+monte_method5_1=monte_method_1
+monte_method5_2=monte_method_2
+monte_method5_3=monte_method_3
+monte_method5_4=monte_method_4
+monte_method5_5=monte_method_5
+monte_method5_6=monte_method_6
+monte_method5_7=monte_method_7
+monte_method5_8=monte_method_8
+monte_method5_9=monte_method_9
+monte_method5_10=monte_method_10
+
+In_5=In()
+σn_5=σn()
+
+N=10**7
+var count=0
+for (let i = 0; i < 10; i++){
+  b=monte(N)
+  count+=1
+  if (count==1){
+    monte_method_1=b
+  }else if (count==2){
+    monte_method_2=b
+  }else if (count==3){
+    monte_method_3=b
+  }else if (count==4){
+    monte_method_4=b
+  }else if (count==5){
+    monte_method_5=b
+  }else if (count==6){
+    monte_method_6=b
+  }else if (count==7){
+    monte_method_7=b
+  }else if (count==8){
+    monte_method_8=b
+  }else if (count==9){
+    monte_method_9=b
+  }else if (count==10){
+    monte_method_10=b
+  }
+}
+
+monte_method7_1=monte_method_1
+monte_method7_2=monte_method_2
+monte_method7_3=monte_method_3
+monte_method7_4=monte_method_4
+monte_method7_5=monte_method_5
+monte_method7_6=monte_method_6
+monte_method7_7=monte_method_7
+monte_method7_8=monte_method_8
+monte_method7_9=monte_method_9
+monte_method7_10=monte_method_10
+
+In_7=In()
+σn_7=σn()
+
+N=10
+var count=0
+for (let i = 0; i < 10; i++){
+  b=monte(N)
+  count+=1
+if (count==1){
+  monte_method_1=b
+  }else if (count==2){
+  monte_method_2=b
+  }else if (count==3){
+    monte_method_3=b
+  }else if (count==4){
+    monte_method_4=b
+  }else if (count==5){
+    monte_method_5=b
+  }else if (count==6){
+    monte_method_6=b
+  }else if (count==7){
+    monte_method_7=b
+  }else if (count==8){
+    monte_method_8=b
+  }else if (count==9){
+    monte_method_9=b
+  }else if (count==10){
+    monte_method_10=b
+  }
+}
+
+In_1=In()
+σn_1=σn()
+
+</script>
+
+<script>
+
+    var myfunc = function () {
+      document.getElementById('10_1').innerHTML = monte_method_1 ;
+      document.getElementById('10_2').innerHTML = monte_method_2 ;
+      document.getElementById('10_3').innerHTML = monte_method_3 ;
+      document.getElementById('10_4').innerHTML = monte_method_4 ;
+      document.getElementById('10_5').innerHTML = monte_method_5 ;
+      document.getElementById('10_6').innerHTML = monte_method_6 ;
+      document.getElementById('10_7').innerHTML = monte_method_7 ;
+      document.getElementById('10_8').innerHTML = monte_method_8 ;
+      document.getElementById('10_9').innerHTML = monte_method_9 ;
+      document.getElementById('10_0').innerHTML = monte_method_10 ;
+
+      document.getElementById('13_1').innerHTML = monte_method3_1.toFixed(3)  ;
+      document.getElementById('13_2').innerHTML = monte_method3_2.toFixed(3)  ;
+      document.getElementById('13_3').innerHTML = monte_method3_3.toFixed(3)  ;
+      document.getElementById('13_4').innerHTML = monte_method3_4.toFixed(3)  ;
+      document.getElementById('13_5').innerHTML = monte_method3_5.toFixed(3)  ;
+      document.getElementById('13_6').innerHTML = monte_method3_6.toFixed(3)  ;
+      document.getElementById('13_7').innerHTML = monte_method3_7.toFixed(3)  ;
+      document.getElementById('13_8').innerHTML = monte_method3_8.toFixed(3)  ;
+      document.getElementById('13_9').innerHTML = monte_method3_9.toFixed(3)  ;
+      document.getElementById('13_0').innerHTML = monte_method3_10.toFixed(3)  ;
+
+      document.getElementById('15_1').innerHTML = monte_method5_1.toFixed(4)  ;
+      document.getElementById('15_2').innerHTML = monte_method5_2.toFixed(4)  ;
+      document.getElementById('15_3').innerHTML = monte_method5_3.toFixed(4)  ;
+      document.getElementById('15_4').innerHTML = monte_method5_4.toFixed(4)  ;
+      document.getElementById('15_5').innerHTML = monte_method5_5.toFixed(4)  ;
+      document.getElementById('15_6').innerHTML = monte_method5_6.toFixed(4)  ;
+      document.getElementById('15_7').innerHTML = monte_method5_7.toFixed(4)  ;
+      document.getElementById('15_8').innerHTML = monte_method5_8.toFixed(4)  ;
+      document.getElementById('15_9').innerHTML = monte_method5_9.toFixed(4)  ;
+      document.getElementById('15_0').innerHTML = monte_method5_10.toFixed(4)  ;
+
+      document.getElementById('17_1').innerHTML = monte_method7_1.toFixed(4)  ;
+      document.getElementById('17_2').innerHTML = monte_method7_2.toFixed(4)  ;
+      document.getElementById('17_3').innerHTML = monte_method7_3.toFixed(4)  ;
+      document.getElementById('17_4').innerHTML = monte_method7_4.toFixed(4)  ;
+      document.getElementById('17_5').innerHTML = monte_method7_5.toFixed(4)  ;
+      document.getElementById('17_6').innerHTML = monte_method7_6.toFixed(4)  ;
+      document.getElementById('17_7').innerHTML = monte_method7_7.toFixed(4)  ;
+      document.getElementById('17_8').innerHTML = monte_method7_8.toFixed(4)  ;
+      document.getElementById('17_9').innerHTML = monte_method7_9.toFixed(4)  ;
+      document.getElementById('17_0').innerHTML = monte_method7_10.toFixed(4)  ;
+
+      document.getElementById('10_i').innerHTML = In_1.toFixed(4)  ;
+      document.getElementById('13_i').innerHTML = In_3.toFixed(4)  ;
+      document.getElementById('15_i').innerHTML = In_5.toFixed(4)  ;
+      document.getElementById('17_i').innerHTML = In_7.toFixed(4)  ;
+
+      document.getElementById('10_a').innerHTML = σn_1.toFixed(4)  ;
+      document.getElementById('13_a').innerHTML = σn_3.toFixed(4)  ;
+      document.getElementById('15_a').innerHTML = σn_5.toFixed(4)  ;
+      document.getElementById('17_a').innerHTML = σn_7.toFixed(4)  ;
+
+    }
+  </script>
+
+  <script>
+  let chart = c3.generate({
+    bindto: '#my-chart',
+    size: { width: 640, height: 480 },
+    data: {
+      columns: [
+        ['乱数の数とπの推定値の関係', In_1.toFixed(4), In_3.toFixed(4) , In_5.toFixed(4) , In_7.toFixed(4)],
+        //['乱数の数とπの推定値の関係', σn_1.toFixed(4), σn_3.toFixed(4) , σn_5.toFixed(4) , σn_7.toFixed(4)]
+      ],
+      labels: true
+    },
+    axis: {
+      x: {
+        label: {
+          text: '乱数の数',
+          position: 'outer-middle'
+        }
+      },
+      y: {
+        label: {
+          text: 'πの推定値',
+          position: 'outer-middle'
+        }
+      }
+    }
+  });
+  </script>
